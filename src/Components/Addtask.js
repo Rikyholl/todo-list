@@ -13,7 +13,8 @@ function AddTask({ tasks, setTasks }){
                 {
                     id: tasks.length,
                     text: value, 
-                    checked: false
+                    checked: false, 
+                    time: (new Date().getHours() +':'+ new Date().getMinutes())
                 }
                 
             ]);

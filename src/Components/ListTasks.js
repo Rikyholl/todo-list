@@ -41,6 +41,7 @@ function ListTasks({ tasks, setTasks }){
 
             if (item.id === id){
                 item.text = value;
+                item.time = (new Date().getHours() +':'+ new Date().getMinutes());
             }
 
             return item;
@@ -50,6 +51,13 @@ function ListTasks({ tasks, setTasks }){
         setEdit(null);
    }
 
+   function handlerKeyPress(e){ // Событие на кнопку "Enter"
+
+        if (e.key === 'Enter'){
+            handlerSaveTask();
+        }
+    }
+
 
     return(
 
@@ -57,18 +65,25 @@ function ListTasks({ tasks, setTasks }){
 
             {
                 tasks.map((item) => (
-                    <div key={item.id} className="task1"> 
+                    <div key={item.id} className="tasks_list"> 
 
                     {
                         edit === item.id ? 
-                            <>
+                            <div className="addTask">
+                                <button 
+                                    onClick={() => handlerSaveTask(item.id)} 
+                                    className="btn_add"> 
+                                    <img src="./img/plus.svg" className="btn_icon" />
+                                </button>
 
                                 <input  type="text"  
                                     value={value} 
                                     onChange={(e) => setValue(e.target.value)}
+                                    onKeyDown={handlerKeyPress}
+                                    className="todo_input"
                                 />  
-                                <button onClick={() => handlerSaveTask(item.id)}> Сохранить</button>
-                            </> :
+                                
+                            </div> :
 
                             
                         <div  className="task"> 
@@ -77,14 +92,19 @@ function ListTasks({ tasks, setTasks }){
                                 <input 
                                     type="checkbox"
                                     data-id={item.id}
-                                    onChange={(e) => handlerChange(e)}   
+                                    onChange={(e) => handlerChange(e)} 
+                                    className="checkbox"  
+                                    id={item.id}
                                 />
 
-                                <span
-                                    className={item.checked ? "done" : ""}
+                                <label
+                                    htmlFor={item.id}
+                                    className={item.checked ? "checkbox_label done" : "checkbox_label"}
                                 >
                                     {item.text}
-                                </span>
+                                </label>
+
+                                
                             </div>
 
                             <div className="btn_edit_del"> 
@@ -100,6 +120,7 @@ function ListTasks({ tasks, setTasks }){
                                 > <img src="./img/edit.svg" 
                                     className="btn_icon" />
                                 </button>
+                                
                             </div>
                         </div>
                            

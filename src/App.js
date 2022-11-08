@@ -4,23 +4,14 @@ import ListTasks from "./Components/ListTasks";
 
 function App() {
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 0,
-      text: 'Купить хлеб',
-      checked: false
-    },
-    {
-      id: 1,
-      text: 'Сделать уборку',
-      checked: false
-    }
-  ]);
+  // const d = Date.now();
+  // const date = new Date();
+  // const Time = (date.getHours() +':'+ date.getMinutes());
 
-  // const [deletedTasks, setDeletedTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
+
 
   console.log(tasks);
-  // console.log('test' + deletedTasks);
 
   return (
     
