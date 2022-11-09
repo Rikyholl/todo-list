@@ -14,7 +14,6 @@ function AddTask({ tasks, setTasks }){
                     id: tasks.length,
                     text: value, 
                     checked: false, 
-                    time: (new Date().getHours() +':'+ new Date().getMinutes())
                 }
                 
             ]);

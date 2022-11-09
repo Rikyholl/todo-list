@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function ListTasks({ tasks, setTasks }){
@@ -12,7 +12,8 @@ function ListTasks({ tasks, setTasks }){
         const newTasks = [...tasks].map(item => {
 
             if(item.id.toString() === event.target.dataset.id){
-                item.checked = event.target.checked
+                item.checked = event.target.checked;
+
             }
 
             return item;
@@ -24,7 +25,7 @@ function ListTasks({ tasks, setTasks }){
    const handlerDelTask = (id) =>{ // Функция изменения статуса задачи
 
         const newDeltasks = [...tasks].filter(item => item.id !== id);
-
+        
         setTasks(newDeltasks);
    }
 
@@ -41,7 +42,6 @@ function ListTasks({ tasks, setTasks }){
 
             if (item.id === id){
                 item.text = value;
-                item.time = (new Date().getHours() +':'+ new Date().getMinutes());
             }
 
             return item;
@@ -51,12 +51,14 @@ function ListTasks({ tasks, setTasks }){
         setEdit(null);
    }
 
-   function handlerKeyPress(e){ // Событие на кнопку "Enter"
+//    function handlerKeyPress(e){ // Событие на кнопку "Enter"
 
-        if (e.key === 'Enter'){
-            handlerSaveTask();
-        }
-    }
+//         if (e.key === 'Enter'){
+//             handlerSaveTask(ide);
+//         }
+
+//         console.log( e.target.dataset.id);
+//     }
 
 
     return(
@@ -77,12 +79,12 @@ function ListTasks({ tasks, setTasks }){
                                 </button>
 
                                 <input  type="text"  
+                                    data-id={item.id}
                                     value={value} 
                                     onChange={(e) => setValue(e.target.value)}
-                                    onKeyDown={handlerKeyPress}
+                                    // onKeyDown={handlerKeyPress}
                                     className="todo_input"
                                 />  
-                                
                             </div> :
 
                             
@@ -119,9 +121,9 @@ function ListTasks({ tasks, setTasks }){
                                     className="btn"
                                 > <img src="./img/edit.svg" 
                                     className="btn_icon" />
-                                </button>
-                                
+                                </button>     
                             </div>
+                            
                         </div>
                            
                     }

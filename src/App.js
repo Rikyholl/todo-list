@@ -4,9 +4,6 @@ import ListTasks from "./Components/ListTasks";
 
 function App() {
 
-  // const d = Date.now();
-  // const date = new Date();
-  // const Time = (date.getHours() +':'+ date.getMinutes());
 
   const [tasks, setTasks] = useState([]);
 
