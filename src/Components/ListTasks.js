@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-function ListTasks({ tasks, setTasks }){
+export default function ListTasks({ tasks, setTasks }){
 
     const [edit, setEdit] = useState(null);
     const [value, setValue] = useState('');
@@ -51,10 +51,10 @@ function ListTasks({ tasks, setTasks }){
         setEdit(null);
    }
 
-//    function handlerKeyPress(e){ // Событие на кнопку "Enter"
+//    function handlerKeyPress(e, id){ // Событие на кнопку "Enter"
 
 //         if (e.key === 'Enter'){
-//             handlerSaveTask(ide);
+//             handlerSaveTask(id);
 //         }
 
 //         console.log( e.target.dataset.id);
@@ -82,7 +82,7 @@ function ListTasks({ tasks, setTasks }){
                                     data-id={item.id}
                                     value={value} 
                                     onChange={(e) => setValue(e.target.value)}
-                                    // onKeyDown={handlerKeyPress}
+                                    // onKeyDown={() => handlerKeyPress(e, item.id)}
                                     className="todo_input"
                                 />  
                             </div> :
@@ -138,4 +138,3 @@ function ListTasks({ tasks, setTasks }){
     );
 }
 
-export default ListTasks;
